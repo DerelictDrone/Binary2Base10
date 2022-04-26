@@ -1,0 +1,21 @@
+<input id="exe" type="file"></input>
+<a id="downloadlink" download></a>
+
+<script>
+exe.addEventListener('change',async () => {
+
+file = await exe.files[0].text()
+name = await exe.files[0].name
+exe.value = ''
+
+hextArray = []
+
+for(let i = 0; i < file.length; i++) {
+hextArray.push(file.charCodeAt(i))
+}
+txt = new Blob([hextArray.join(" ")])
+downloadlink.href = URL.createObjectURL(txt)
+downloadlink.click()
+})
+
+</script>
